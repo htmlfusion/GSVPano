@@ -11,7 +11,7 @@ var eventEmitter = require('event-emitter');
  */
 var GSVPANO = GSVPANO || {};
 
-
+var google;
 /**
  * Fetch URL. Use this parameter in case the URL stops working. At
  * the end of this string, the parameters &panoid, &x, &y, &zoom 
@@ -43,12 +43,14 @@ GSVPANO.Pano = require('./Pano');
  * @param {Object} parameters
  * @param {Number} parameters.zoom Zoom (default 1)
  * @param {Number} parameters.autocompose Compose automatically (default true)
+ * @param {Object} google access to make google maps
  * @example
  *       var loader = new GSVPANO.PanoLoader({ zoom: 3, autocompose: false });
  */
-GSVPANO.PanoLoader = function(parameters) {
+GSVPANO.PanoLoader = function(parameters, googleMaps) {
   'use strict';
 
+  google = googleMaps;
   eventEmitter(this);
 
   var _params = parameters || {};
